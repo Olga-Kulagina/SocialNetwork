@@ -2,9 +2,16 @@ import React from 'react'
 import s from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ProfilePageType} from '../../redux/state';
+import {PostType} from '../../redux/state';
 
-const Profile: React.FC<ProfilePageType> = (props) => {
+export type ProfilePropsType = {
+    posts: Array<PostType>
+    addPost: (postMessage: string) => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
+}
+
+const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.profile}>
             <ProfileInfo />

@@ -1,9 +1,9 @@
 import React, {ChangeEvent, MouseEvent} from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ProfilePageType} from '../../../redux/state';
+import {ProfilePropsType} from '../Profile';
 
-const MyPosts: React.FC<ProfilePageType> = (props) => {
+const MyPosts = (props: ProfilePropsType) => {
 
 
     let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />)
