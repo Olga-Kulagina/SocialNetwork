@@ -11,11 +11,11 @@ const MyPosts = (props: ProfilePropsType) => {
 
     let addPost = () => {
         let text = props.newPostText
-        props.addPost(text)
+        props.dispatch({type: 'ADD-POST', postMessage: text})
     }
 
     let updateNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
     }
 
     return (
