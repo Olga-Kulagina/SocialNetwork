@@ -2,6 +2,7 @@ import React, {ChangeEvent, MouseEvent} from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import {ProfilePropsType} from '../Profile';
+import {addPostActionCreator, updateNewTextActionCreator} from '../../../redux/state';
 
 const MyPosts = (props: ProfilePropsType) => {
 
@@ -11,11 +12,11 @@ const MyPosts = (props: ProfilePropsType) => {
 
     let addPost = () => {
         let text = props.newPostText
-        props.dispatch({type: 'ADD-POST', postMessage: text})
+        props.dispatch(addPostActionCreator(text))
     }
 
     let updateNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
+        props.dispatch(updateNewTextActionCreator(e.currentTarget.value))
     }
 
     return (
