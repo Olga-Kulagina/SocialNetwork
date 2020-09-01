@@ -19,6 +19,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageBody: string
 }
 
 export type RootStateType = {
@@ -37,19 +38,33 @@ export type StoreType = {
 }
 
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator>;
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> |
+    ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator>;
 
 export const addPostActionCreator = (postMessage: string) => {
     return {
-        type: 'ADD-POST',
+        type: 'ADD_POST',
         postMessage: postMessage
+    } as const
+}
+export const sendMessageActionCreator = (message: string) => {
+    return {
+        type: 'SEND_MESSAGE',
+        message: postMessage
     } as const
 }
 
 export const updateNewTextActionCreator = (newText: string) => {
     return {
-        type: 'UPDATE-NEW-POST-TEXT',
+        type: 'UPDATE_NEW_POST_TEXT',
         newText: newText
+    } as const
+}
+
+export const updateNewMessageBodyActionCreator = (newMessageBody: string) => {
+    return {
+        type: 'UPDATE_NEW_MESSAGE_BODY',
+        newMessageBody: newMessageBody
     } as const
 }
 
@@ -81,6 +96,7 @@ let store: StoreType = {
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'},
             ],
+            newMessageBody: ''
         },
     },
     addPost(postMessage: string) {
@@ -108,7 +124,7 @@ let store: StoreType = {
         return this._state;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST'){
+        if (action.type === 'ADD_POST') {
             let newPost = {
                 id: 5,
                 message: action.postMessage,
@@ -118,8 +134,17 @@ let store: StoreType = {
             this._state.profilePage.posts.push(newPost);
             this.updateNewPostText('')
             this.rerenderEntireTree();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
             this._state.profilePage.newPostText = action.newText;
+            this.rerenderEntireTree();
+        } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
+            this._state.dialogsPage.newMessageBody = action.newMessageBody;
+            this.rerenderEntireTree();
+        } else if (action.type === 'SEND_MESSAGE') {
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.messages.push({id: 6, message: body})
+
             this.rerenderEntireTree();
         }
     }
