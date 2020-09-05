@@ -1,40 +1,46 @@
 import React, {ChangeEvent, MouseEvent} from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ProfilePropsType} from '../Profile';
-import {addPostActionCreator, updateNewTextActionCreator} from '../../../redux/state';
+import {PostType} from '../../../redux/redux-store';
 
-const MyPosts = (props: ProfilePropsType) => {
+type MyPostsPropsType = {
+    updateNewPostText: (text: string) => void
+    addPost: (text: string) => void
+    posts: Array<PostType>
+    newPostText: string
+}
+
+const MyPosts = (props: MyPostsPropsType) => {
 
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />)
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
 
     let addPost = () => {
         let text = props.newPostText
-        props.dispatch(addPostActionCreator(text))
+        props.addPost(text)
     }
 
     let updateNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewTextActionCreator(e.currentTarget.value))
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
+        <div>
+            <h3>My posts</h3>
             <div>
-                <h3>My posts</h3>
                 <div>
-                    <div>
-                        <textarea onChange={updateNewPostText} value={props.newPostText} />
-                    </div>
-                    <div>
-                        <button onClick={addPost}>Add post</button>
-                    </div>
+                    <textarea onChange={updateNewPostText} value={props.newPostText}/>
                 </div>
-                <div className={s.posts}>
-                    {postsElements}
+                <div>
+                    <button onClick={addPost}>Add post</button>
                 </div>
-
             </div>
+            <div className={s.posts}>
+                {postsElements}
+            </div>
+
+        </div>
     )
 }
 
