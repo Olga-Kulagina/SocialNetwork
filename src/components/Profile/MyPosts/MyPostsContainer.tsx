@@ -2,26 +2,28 @@ import React, {ChangeEvent, MouseEvent} from 'react'
 import s from './MyPosts.module.css'
 import {addPostActionCreator, updateNewTextActionCreator} from '../../../redux/profile-reducer';
 import MyPosts from './MyPosts';
-import {StorePropsType} from '../../../App';
+import {connect} from 'react-redux';
+import {AppStateType} from '../../../redux/redux-store';
 
-const MyPostsContainer = (props: StorePropsType) => {
-    const state = props.store.getState();
-
-    let addPost = () => {
-        let text = state.profilePage.newPostText
-        props.store.dispatch(addPostActionCreator(text))
-    }
-
-    let updateNewPostText = (text: string) => {
-        props.store.dispatch(updateNewTextActionCreator(text))
-    }
-
+let mapStateToProps = (state: AppStateType) => {
     return (
-        <MyPosts posts={state.profilePage.posts}
-                 newPostText={state.profilePage.newPostText}
-                 updateNewPostText={updateNewPostText}
-                 addPost={addPost}/>
+        {
+            posts: state.profilePage.posts,
+            newPostText: state.profilePage.newPostText
+        }
     )
 }
+
+let mapDispatchToProps = (dispatch: any) => {
+    return (
+        {
+            updateNewPostText: (text: string) => {dispatch(updateNewTextActionCreator(text))},
+            addPost: (text: string) => {dispatch(addPostActionCreator(text))
+}
+        }
+    )
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;

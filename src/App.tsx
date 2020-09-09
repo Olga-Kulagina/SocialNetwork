@@ -8,22 +8,21 @@ import {StoreType} from './redux/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 export type StorePropsType = {
-    store: StoreType
 }
 
 const App: React.FC<StorePropsType> = (props: StorePropsType) => {
 
     return (
-        <BrowserRouter>
+
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
-                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                    <Route path='/profile' render={() => <Profile/>}/>
                 </div>
             </div>
-        </BrowserRouter>
+
     );
 }
 

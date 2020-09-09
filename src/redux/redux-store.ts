@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from 'redux';
+import {AnyAction, combineReducers, createStore, Store} from 'redux';
 import profileReducer, {addPostActionCreator, updateNewTextActionCreator} from './profile-reducer';
 import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from './dialogs-reducer';
 
@@ -6,6 +6,9 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer
 });
+
+type RootReducerType = typeof reducers;
+export type AppStateType = ReturnType<RootReducerType>
 
 export type PostType = {
     id: number
@@ -47,6 +50,6 @@ export type StoreType = {
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> |
     ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator>;
 
-let store: StoreType = createStore(reducers);
+let store: Store<any, AnyAction> = createStore(reducers);
 
 export default store;
