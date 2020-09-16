@@ -1,10 +1,12 @@
 import {AnyAction, combineReducers, createStore, Store} from 'redux';
 import profileReducer, {addPostActionCreator, updateNewTextActionCreator} from './profile-reducer';
 import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from './dialogs-reducer';
+import usersReducer from './users-reducer';
 
 let reducers = combineReducers({
     profilePage: profileReducer,
-    dialogsPage: dialogsReducer
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer
 });
 
 type RootReducerType = typeof reducers;
