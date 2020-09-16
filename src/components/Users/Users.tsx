@@ -1,5 +1,7 @@
 import React from 'react';
 import {UsersType, UserType} from '../../redux/users-reducer';
+import axios from 'axios'
+import userPhoto from '../../assets/images/avatar.png'
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -9,33 +11,10 @@ type UsersPropsType = {
 }
 
 const Users = (props: UsersPropsType) => {
-
     if(props.users.length === 0) {
-        props.setUsers(
-            [
-                {
-                    id: 1,
-                    followed: true,
-                    fullName: 'Valentina',
-                    status: 'I am a boss',
-                    location: {city: 'Pjatigorsk', country: 'Russia'}
-                },
-                {
-                    id: 2,
-                    followed: false,
-                    fullName: 'Tatiana',
-                    status: 'Bla bla bla',
-                    location: {city: 'Moscow', country: 'Russia'}
-                },
-                {
-                    id: 3,
-                    followed: true,
-                    fullName: 'Jack',
-                    status: 'Are you ok?',
-                    location: {city: 'LA', country: 'USA'}
-                },
-            ]
-        )
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items)
+        })
     }
 
     return (
@@ -43,7 +22,9 @@ const Users = (props: UsersPropsType) => {
             {
                 props.users.map(u => <div key={u.id}>
                     <div>
-                        <div>Ava</div>
+                        <div>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='avatar'/>
+                        </div>
                         <div>
                             {u.followed ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button> :
                                 <button onClick={() => props.follow(u.id)}>Follow</button>}
@@ -51,7 +32,8 @@ const Users = (props: UsersPropsType) => {
                         </div>
                     </div>
                     <div>
-                        <div>{u.fullName}</div>
+
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </div>
                 </div>)
