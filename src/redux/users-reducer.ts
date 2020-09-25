@@ -1,4 +1,3 @@
-import {ActionsTypes, ProfilePageType} from './redux-store';
 type LocationType = {
     city: string
     country: string
@@ -23,13 +22,15 @@ export type UsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 let initialState: UsersType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 const usersReducer = (state: UsersType = initialState, action: any) => {
@@ -60,6 +61,9 @@ const usersReducer = (state: UsersType = initialState, action: any) => {
             return {...state, currentPage: action.currentPage}
         case 'SET-TOTAL-USERS-COUNT':
             return {...state, totalUsersCount: action.totalUsersCount}
+        case 'TOGGLE-IS-FETCHING': {
+            return {...state, isFetching: action.isFetching}
+        }
         default:
             return state;
     }
@@ -93,6 +97,12 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         totalUsersCount
+    } as const
+}
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: 'TOGGLE-IS-FETCHING',
+        isFetching
     } as const
 }
 
