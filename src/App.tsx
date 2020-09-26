@@ -10,7 +10,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 export type StorePropsType = {
 }
 
-const App: React.FC<StorePropsType> = (props: StorePropsType) => {
+const App: React.FC<StorePropsType> = () => {
 
     return (
 
@@ -19,7 +19,7 @@ const App: React.FC<StorePropsType> = (props: StorePropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/profile' render={() => <ProfileContainer/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
                 </div>
             </div>
