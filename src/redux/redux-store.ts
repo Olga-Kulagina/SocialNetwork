@@ -1,5 +1,5 @@
 import {AnyAction, combineReducers, createStore, Store} from 'redux';
-import profileReducer, {addPostActionCreator, updateNewTextActionCreator} from './profile-reducer';
+import profileReducer, {addPostActionCreator, setUserProfile, updateNewTextActionCreator} from './profile-reducer';
 import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from './dialogs-reducer';
 import usersReducer from './users-reducer';
 
@@ -29,6 +29,7 @@ export type MessageType = {
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
+    profile: object | null
 }
 export type DialogsPageType = {
     dialogs: Array<DialogType>
@@ -50,7 +51,8 @@ export type StoreType = {
 }
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> |
-    ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator>;
+    ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator> |
+    ReturnType<typeof setUserProfile>;
 
 let store: Store<any, AnyAction> = createStore(reducers);
 
