@@ -1,18 +1,13 @@
-export type AuthStateType = {
-    userId: number
-    email: string
-    login: string
-    isAuth: boolean
-}
-
-let initialState: AuthStateType = {
-    userId: 1,
-    email: 'null',
-    login: 'null',
+let initialState = {
+    userId: 1 as number | null,
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false
 }
 
-export const authReducer = (state: AuthStateType = initialState, action: any) => {
+export type AuthStateType = typeof initialState
+
+export const authReducer = (state = initialState, action: any): AuthStateType => {
     switch (action.type) {
         case 'SET_USER_DATA':
             return {

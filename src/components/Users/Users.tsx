@@ -14,12 +14,11 @@ type UsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalUsersCount: number) => void
     onPageChanged: (pageNumber: number) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
-const Users = (props: UsersPropsType) => {
+const Users: React.FC<UsersPropsType> = (props) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 

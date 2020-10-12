@@ -1,3 +1,5 @@
+import {usersAPI} from '../api/api';
+
 type LocationType = {
     city: string
     country: string
@@ -17,25 +19,18 @@ export type UserType = {
     photos: photosType
 }
 
-export type UsersType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-}
-
-let initialState: UsersType = {
-    users: [],
+let initialState = {
+    users: [] as Array<UserType>,
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [] as Array<number>
 }
 
-const usersReducer = (state: UsersType = initialState, action: any) => {
+export type UsersStateType = typeof initialState
+
+const usersReducer = (state = initialState, action: any): UsersStateType => {
     switch (action.type) {
         case 'FOLLOW':
             return {
@@ -119,5 +114,19 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
         isFetching
     } as const
 }
+
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+        })
+
+    }
+}
+
 
 export default usersReducer;
