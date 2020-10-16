@@ -72,13 +72,13 @@ const usersReducer = (state = initialState, action: any): UsersStateType => {
     }
 }
 
-export const follow = (userId: number) => {
+export const followSuccess = (userId: number) => {
     return {
         type: 'FOLLOW',
         userId: userId
     } as const
 }
-export const unfollow = (userId: number) => {
+export const unfollowSuccess = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         userId: userId
@@ -111,7 +111,8 @@ export const toggleIsFetching = (isFetching: boolean) => {
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => {
     return {
         type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
-        isFetching
+        isFetching,
+        userId
     } as const
 }
 
@@ -127,6 +128,32 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
     }
 }
+
+export const unfollowThunkCreator = (userId: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        usersAPI.unfollow(userId).then(response => {
+            if (response.data.resultCode === 0){
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+        })
+
+    }
+}
+
+export const followThunkCreator = (userId: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        usersAPI.follow(userId).then(response => {
+            if (response.data.resultCode === 0){
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+        })
+    }
+}
+
 
 
 export default usersReducer;
