@@ -2,7 +2,7 @@ import React from 'react'
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getUserProfileThunkCreator} from '../../redux/profile-reducer';
-import {Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
 import {WithAuthRedirect} from '../../hoc/withAuthRedirect';
 
