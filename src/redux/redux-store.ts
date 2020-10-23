@@ -1,5 +1,10 @@
 import {AnyAction, applyMiddleware, combineReducers, createStore, Store} from 'redux';
-import profileReducer, {addPostActionCreator, setUserProfile, updateNewTextActionCreator} from './profile-reducer';
+import profileReducer, {
+    addPostActionCreator,
+    setStatus,
+    setUserProfile,
+    updateNewTextActionCreator
+} from './profile-reducer';
 import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from './dialogs-reducer';
 import usersReducer from './users-reducer';
 import {authReducer} from './auth-reducer';
@@ -55,7 +60,7 @@ export type StoreType = {
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> |
     ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator> |
-    ReturnType<typeof setUserProfile>;
+    ReturnType<typeof setUserProfile> | ReturnType<typeof setStatus>;
 
 let store: Store<any, AnyAction> = createStore(reducers, applyMiddleware(thunkMiddleware));
 

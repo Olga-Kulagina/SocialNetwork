@@ -1,5 +1,5 @@
 import {ActionsTypes, PostType} from './redux-store';
-import {usersAPI} from '../api/api';
+import {profileAPI, usersAPI} from '../api/api';
 
 type ContactsType = {
     github: string
@@ -29,7 +29,8 @@ let initialState = {
         {id: 4, message: 'Blablabla', likesCount: 5},
     ] as Array<PostType>,
     newPostText: '',
-    profile: null as ProfileType | null
+    profile: null as ProfileType | null,
+    status: ''
 }
 
 export type ProfileStateType = typeof initialState
@@ -49,6 +50,12 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
         }
         case 'SET_USER_PROFILE': {
             return {...state, profile: action.profile}
+        }
+        case 'SET_STATUS': {
+            return {
+                ...state,
+                status: action.status
+            }
         }
         default:
             return state;
@@ -73,9 +80,27 @@ export const setUserProfile = (profile: ProfileType) => {
         profile
     } as const
 }
+export const setStatus = (status: string) => {
+    return {
+        type: 'SET_STATUS',
+        status
+    } as const
+}
 export const getUserProfileThunkCreator = (userId: number) => (dispatch: any) => {
-    return usersAPI.getProfile(userId).then(response => {
+    return profileAPI.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data))
+    })
+}
+export const getStatusThunkCreator = (userId: number) => (dispatch: any) => {
+    return profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatus(response.data))
+    })
+}
+export const updateStatusThunkCreator = (status: string) => (dispatch: any) => {
+    return profileAPI.updateStatus(status).then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
     })
 }
 

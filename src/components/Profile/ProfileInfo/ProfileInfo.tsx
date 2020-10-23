@@ -5,6 +5,8 @@ import {ProfileStatus} from './ProfileStatus';
 
 type ProfileInfoProps = {
     profile: any
+    status: string
+    updateStatus: any
 }
 
 function ProfileInfo(props: ProfileInfoProps) {
@@ -20,7 +22,7 @@ function ProfileInfo(props: ProfileInfoProps) {
             </div>*/}
             <div>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={'Hohoho'}/>
+                <ProfileStatus status={props.status}/>
             </div>
 
         </div>
