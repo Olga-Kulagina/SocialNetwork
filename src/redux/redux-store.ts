@@ -2,14 +2,13 @@ import {AnyAction, applyMiddleware, combineReducers, createStore, Store} from 'r
 import profileReducer, {
     addPostActionCreator,
     setStatus,
-    setUserProfile,
-    updateNewTextActionCreator
+    setUserProfile
 } from './profile-reducer';
-import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from './dialogs-reducer';
+import dialogsReducer, {sendMessageActionCreator} from './dialogs-reducer';
 import usersReducer from './users-reducer';
 import {authReducer} from './auth-reducer';
 import thunkMiddleware from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form'
+import {reducer as formReducer} from 'redux-form'
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -38,7 +37,6 @@ export type MessageType = {
 
 export type ProfilePageType = {
     posts: Array<PostType>
-    newPostText: string
     profile: object | null
 }
 export type DialogsPageType = {
@@ -60,9 +58,11 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> |
-    ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator> |
-    ReturnType<typeof setUserProfile> | ReturnType<typeof setStatus>;
+export type ActionsTypes =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof sendMessageActionCreator>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setStatus>;
 
 let store: Store<any, AnyAction> = createStore(reducers, applyMiddleware(thunkMiddleware));
 

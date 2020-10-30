@@ -1,5 +1,5 @@
 import {ActionsTypes, PostType} from './redux-store';
-import {profileAPI, usersAPI} from '../api/api';
+import {profileAPI} from '../api/api';
 
 type ContactsType = {
     github: string
@@ -28,7 +28,6 @@ let initialState = {
         {id: 3, message: 'Yo Yo Yo', likesCount: 15},
         {id: 4, message: 'Blablabla', likesCount: 5},
     ] as Array<PostType>,
-    newPostText: '',
     profile: null as ProfileType | null,
     status: ''
 }
@@ -43,10 +42,7 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
                 message: action.postMessage,
                 likesCount: 0
             };
-            return {...state, posts: [...state.posts, newPost], newPostText: ''};
-        }
-        case 'UPDATE_NEW_POST_TEXT': {
-            return {...state, newPostText: action.newText};
+            return {...state, posts: [...state.posts, newPost]};
         }
         case 'SET_USER_PROFILE': {
             return {...state, profile: action.profile}
@@ -66,12 +62,6 @@ export const addPostActionCreator = (postMessage: string) => {
     return {
         type: 'ADD_POST',
         postMessage: postMessage
-    } as const
-}
-export const updateNewTextActionCreator = (newText: string) => {
-    return {
-        type: 'UPDATE_NEW_POST_TEXT',
-        newText: newText
     } as const
 }
 export const setUserProfile = (profile: ProfileType) => {
