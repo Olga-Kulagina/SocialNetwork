@@ -8,6 +8,8 @@ import {
 } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
+import {Textarea} from '../common/FormsControls/FormsControls';
+import {maxLengthCreator, required} from '../../utils/validators/validators';
 
 export type dialogsPropsType = {
     dialogs: Array<DialogType>
@@ -44,11 +46,15 @@ const Dialogs = (props: dialogsPropsType) => {
     )
 }
 
+const maxLength100 = maxLengthCreator(100)
+
 const AddMessageForm = (props: any) => {
+
     return (
         <form className={s.messageInput} onSubmit={props.handleSubmit}>
             <div>
-                <Field component='textarea' name='newMessageBody' placeholder='Enter your message' />
+                <Field component={Textarea} name='newMessageBody' placeholder='Enter your message'
+                validate={[required, maxLength100]}/>
             </div>
             <div>
                 <button>Send message</button>
