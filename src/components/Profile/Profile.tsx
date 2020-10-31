@@ -6,7 +6,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 type ProfilePropsType = {
     profile: object
     status: string
-    updateStatus: any
+    updateStatus: (newStatus: string) => void
 }
 
 

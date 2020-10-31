@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import Users from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
+import {AppStateType} from '../../redux/redux-store';
 
 type UsersContainerPropsType = {
     users: Array<UserType>
@@ -53,7 +54,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
