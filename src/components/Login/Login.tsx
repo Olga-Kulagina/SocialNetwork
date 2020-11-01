@@ -4,9 +4,9 @@ import {Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {loginThunkCreator} from '../../redux/auth-reducer';
-import {WithAuthRedirect} from '../../hoc/withAuthRedirect';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
+import s from '../common/FormsControls/FormsControls.module.css'
 
 const LoginForm = (props: any) => {
     return (
@@ -22,6 +22,9 @@ const LoginForm = (props: any) => {
                 <div>
                     <Field component={Input} name={'rememberMe'} type={'checkbox'}/> remember me
                 </div>
+                {props.error && <div className={s.formSummaryError}>
+                    {props.error}
+                </div>}
                 <div>
                     <button>Login</button>
                 </div>
