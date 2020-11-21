@@ -1,5 +1,4 @@
 import React from 'react'
-import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/avatar.png';
 import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
@@ -18,11 +17,8 @@ function ProfileInfo(props: ProfileInfoProps) {
 
     return (
         <div>
-            {/*<div className={s.photo}>
-                <img src='https://cs8.pikabu.ru/post_img/big/2016/06/23/6/1466672239198666433.png'/>
-            </div>*/}
             <div>
-                <img src={props.profile.photos.large || userPhoto}/>
+                <img src={props.profile.photos.large || userPhoto} alt={'user avatar'}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
 

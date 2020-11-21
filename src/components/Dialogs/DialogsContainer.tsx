@@ -1,5 +1,3 @@
-import React from 'react';
-import s from './Dialogs.module.css'
 import {
     sendMessageActionCreator
 } from '../../redux/dialogs-reducer'

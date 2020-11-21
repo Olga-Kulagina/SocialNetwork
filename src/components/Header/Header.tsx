@@ -11,7 +11,7 @@ export type HeaderPropsType = {
 function Header(props: HeaderPropsType) {
     return (
         <header className={s.header}>
-            <img src='https://svg-clipart.com/svg/yellow/8aCkhdK-lemon-slice-vector.svg'/>
+            <img src='https://svg-clipart.com/svg/yellow/8aCkhdK-lemon-slice-vector.svg' alt={'social network logo'}/>
             <div className={s.loginBlock}>
                 {props.isAuth ? <div>{props.login} - <button onClick={props.logout}>Log Out</button></div> : <NavLink to={'/login'}>Login</NavLink> }
 

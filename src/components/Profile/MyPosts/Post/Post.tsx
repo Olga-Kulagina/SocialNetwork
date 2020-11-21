@@ -9,7 +9,7 @@ export type PostPropsType = {
 function Post(props: PostPropsType) {
     return (
         <div className={s.item}>
-            <img src='https://www.kindpng.com/picc/m/41-415250_how-to-draw-pusheen-the-cat-cartoon-cat.png'/>
+            <img src='https://www.kindpng.com/picc/m/41-415250_how-to-draw-pusheen-the-cat-cartoon-cat.png' alt={'user avatar'}/>
             {props.message}
             <div>
                 <span>like: </span>{props.likesCount}

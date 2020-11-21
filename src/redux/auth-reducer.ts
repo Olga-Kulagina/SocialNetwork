@@ -12,7 +12,7 @@ export type AuthStateType = typeof initialState
 
 export const authReducer = (state = initialState, action: any): AuthStateType => {
     switch (action.type) {
-        case 'SET_USER_DATA':
+        case 'AUTH/SET_USER_DATA':
             return {
                 ...state,
                 ...action.payload
@@ -23,7 +23,7 @@ export const authReducer = (state = initialState, action: any): AuthStateType =>
 }
 
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
-    type: 'SET_USER_DATA',
+    type: 'AUTH/SET_USER_DATA',
     payload: {userId, email, login, isAuth}
 })
 export const getAuthUserDataThunkCreator = () => (dispatch: any) => {

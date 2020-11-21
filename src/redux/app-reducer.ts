@@ -8,7 +8,7 @@ export type AuthStateType = typeof initialState
 
 export const appReducer = (state = initialState, action: any): AuthStateType => {
     switch (action.type) {
-        case 'INITIALIZED_SUCCESS':
+        case 'APP/INITIALIZED_SUCCESS':
             return {
                 ...state,
                 initialized: true
@@ -18,7 +18,7 @@ export const appReducer = (state = initialState, action: any): AuthStateType => 
     }
 }
 
-export const initializedSuccess = () => ({type: 'INITIALIZED_SUCCESS'})
+export const initializedSuccess = () => ({type: 'APP/INITIALIZED_SUCCESS'})
 
 
 export const initializeApp = () => (dispatch: any) => {

@@ -36,7 +36,7 @@ export type ProfileStateType = typeof initialState
 
 export const profileReducer = (state = initialState, action: ActionsTypes): ProfileStateType => {
     switch (action.type) {
-        case 'ADD_POST': {
+        case 'P/ADD_POST': {
             let newPost = {
                 id: 5,
                 message: action.postMessage,
@@ -44,10 +44,10 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
             };
             return {...state, posts: [...state.posts, newPost]};
         }
-        case 'SET_USER_PROFILE': {
+        case 'P/SET_USER_PROFILE': {
             return {...state, profile: action.profile}
         }
-        case 'SET_STATUS': {
+        case 'P/SET_STATUS': {
             return {
                 ...state,
                 status: action.status
@@ -60,19 +60,19 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
 
 export const addPostActionCreator = (postMessage: string) => {
     return {
-        type: 'ADD_POST',
+        type: 'P/ADD_POST',
         postMessage: postMessage
     } as const
 }
 export const setUserProfile = (profile: ProfileType) => {
     return {
-        type: 'SET_USER_PROFILE',
+        type: 'P/SET_USER_PROFILE',
         profile
     } as const
 }
 export const setStatus = (status: string) => {
     return {
-        type: 'SET_STATUS',
+        type: 'P/SET_STATUS',
         status
     } as const
 }

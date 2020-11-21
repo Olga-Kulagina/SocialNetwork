@@ -11,7 +11,7 @@ type MyPostsPropsType = {
     posts: Array<PostType>
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts = React.memo((props: MyPostsPropsType) => {
 
 
     let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
@@ -30,7 +30,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     )
-}
+})
 
 const maxLength10 = maxLengthCreator(10)
 
