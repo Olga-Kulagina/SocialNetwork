@@ -31,16 +31,36 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put('profile/status', {status})
+    },
+    savePhoto(photoFile: any) {
+        const formData = new FormData();
+        formData.append('image', photoFile)
+        return instance.put('profile/photo', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 
 }
 
+type MeResponseType = {
+    data: { id: number, email: string, login: string }
+    resultCode: number
+    messages: Array<string>
+}
+type LoginResponseType = {
+    data: { userId: number }
+    resultCode: number
+    messages: Array<string>
+}
+
 export const authAPI = {
     me() {
-        return instance.get('auth/me')
+        return instance.get<MeResponseType>('auth/me')
     },
     login(email: string, password: string, rememberMe: boolean = false) {
-        return instance.post('auth/login', {email, password, rememberMe})
+        return instance.post<LoginResponseType>('auth/login', {email, password, rememberMe})
     },
     logout() {
         return instance.delete('auth/login')

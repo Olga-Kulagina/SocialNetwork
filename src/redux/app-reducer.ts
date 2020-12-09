@@ -18,6 +18,7 @@ export const appReducer = (state = initialState, action: any): AuthStateType => 
     }
 }
 
+
 export const initializedSuccess = () => ({type: 'APP/INITIALIZED_SUCCESS'})
 
 

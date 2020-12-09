@@ -1,6 +1,6 @@
 import {AnyAction, applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import profileReducer, {
-    addPostActionCreator,
+    addPostActionCreator, savePhotoSuccess,
     setStatus,
     setUserProfile
 } from './profile-reducer';
@@ -64,7 +64,8 @@ export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof sendMessageActionCreator>
     | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setStatus>;
+    | ReturnType<typeof setStatus>
+    | ReturnType<typeof savePhotoSuccess>;
 
 let store: Store<any, AnyAction> = createStore(reducers, applyMiddleware(thunkMiddleware));
 

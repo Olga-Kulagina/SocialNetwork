@@ -26,6 +26,8 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
     type: 'AUTH/SET_USER_DATA',
     payload: {userId, email, login, isAuth}
 })
+
+export type getAuthUserDataThunkType = ReturnType<typeof getAuthUserDataThunkCreator>
 export const getAuthUserDataThunkCreator = () => (dispatch: any) => {
     authAPI.me().then(response => {
         if (response.data.resultCode === 0) {
