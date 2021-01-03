@@ -9,6 +9,7 @@ import {Textarea} from '../../common/FormsControls/FormsControls';
 type MyPostsPropsType = {
     addPost: (text: string) => void
     posts: Array<PostType>
+    profile: any
 }
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
@@ -23,8 +24,10 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
 
     return (
         <div>
-            <h3>My posts</h3>
-            <AddNewPostFormRedux onSubmit={addPost}/>
+            <div className={s.addPostForm}>
+                <img src={props.profile.photos.large} alt='author'/>
+                <AddNewPostFormRedux onSubmit={addPost} />
+            </div>
             <div className={s.posts}>
                 {postsElements}
             </div>
@@ -34,17 +37,17 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
 
 const maxLength10 = maxLengthCreator(10)
 
-const AddNewPostForm = (props: any) => {
+type AddNewPostFormPropsType = {
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+}
+
+const AddNewPostForm = (props: AddNewPostFormPropsType) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={Textarea} name='newPostText' validate={[required, maxLength10]}
-                placeholder='Post message'/>
-            </div>
-            <div>
-                <button>Add post</button>
-            </div>
-        </form>
+            <form onSubmit={props.handleSubmit} className={s.form}>
+                    <Field className={s.textarea} component={Textarea} name='newPostText' validate={[required, maxLength10]}
+                           placeholder='Post message'/>
+                    <button className={s.addPostBtn}>Add post</button>
+            </form>
     )
 }
 const AddNewPostFormRedux = reduxForm({form: 'ProfileAddNewPostForm'})(AddNewPostForm)

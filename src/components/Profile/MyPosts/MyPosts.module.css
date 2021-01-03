@@ -1,3 +1,68 @@
 .posts {
     margin-top: 10px;
 }
+
+.addPostForm {
+    display: flex;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+}
+
+.addPostForm img {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    margin: 36px 20px 0 36px;
+}
+
+.form {
+    width: 100%;
+    padding: 20px 36px 10px 0;
+}
+
+.textarea {
+    min-height: 60px;
+    width: 100%;
+    transition: all .3s ease;
+    border-radius: 0.3rem;
+}
+
+.textarea:focus {
+    color: #495057;
+    border-color: #ffc6ba;
+    outline: 0;
+    box-shadow: none;
+}
+
+.addPostBtn {
+    cursor: pointer;
+    padding: .8rem 2.1rem;
+    font-size: 0.688rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #ff5e3a;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid #ff5e3a;
+    transition: all .15s ease-in-out;
+    margin: 5px 0;
+
+
+    font-family: Roboto;
+    float: right;
+}
+
+.addPostBtn:hover {
+    background-color: #ff763a;
+    border-color: #ff763a;
+    opacity: 1;
+    color: #fff;
+}
+
+
+
+
+
+
+
+

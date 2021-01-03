@@ -6,7 +6,8 @@ import {AppStateType} from '../../../redux/redux-store';
 let mapStateToProps = (state: AppStateType) => {
     return (
         {
-            posts: state.profilePage.posts
+            posts: state.profilePage.posts,
+            profile: state.profilePage.profile
         }
     )
 }
