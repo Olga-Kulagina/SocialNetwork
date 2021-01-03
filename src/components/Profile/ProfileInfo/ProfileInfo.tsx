@@ -23,16 +23,37 @@ const ProfileInfo = (props: ProfileInfoProps) => {
         }
     }
 
-        return (
-            <div>
-                <div>
-                    <img src={props.profile.photos.large || userPhoto} alt={'user avatar'}/>
-                    {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                </div>
+    return (
+        <div>
 
+            <div>
+                {/*<img src={props.profile.photos.large || userPhoto} alt={'user avatar'}/>*/}
+                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
             </div>
-        )
-    }
+            <div>
+                {props.profile.fullName}
+            </div>
+            <div>
+                <b>Status</b>: <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+            </div>
+            <div>
+                <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
+                return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
+            })}
+            </div>
+
+        </div>
+    )
+}
+type ContactPropsType = {
+    contactTitle: string
+    contactValue: string
+}
+
+const Contact = (props: ContactPropsType) => {
+    return <div>
+        {props.contactTitle}: {props.contactValue}
+    </div>
+}
 
 export default ProfileInfo;

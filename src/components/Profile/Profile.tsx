@@ -2,9 +2,12 @@ import React from 'react'
 import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
+import profileBckPicture from '../../assets/images/profile_bck_picture.jpg'
+import userPhoto from '../../assets/images/avatar.png';
+import {Preloader} from '../common/Preloader/Preloader';
 
 type ProfilePropsType = {
-    profile: object
+    profile: any
     status: string
     updateStatus: (newStatus: string) => void
     isOwner: boolean
@@ -13,9 +16,24 @@ type ProfilePropsType = {
 
 
 const Profile = (props: ProfilePropsType) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
 
     return (
         <div className={s.profile}>
+            <div className={s.profileHeader}>
+                <div className={s.profileBackground}>
+                    <img src={profileBckPicture} alt='space'/>
+                    <div className={s.profileMenu}>
+
+                    </div>
+                </div>
+                <div className={s.profileUser}>
+                    <img src={props.profile.photos.large || userPhoto} alt={'user avatar'}/>
+                    <p>{props.profile.fullName}</p>
+                </div>
+            </div>
             {<ProfileInfo profile={props.profile} status={props.status} savePhoto={props.savePhoto}
                          isOwner={props.isOwner} updateStatus={props.updateStatus}/>}
             <MyPostsContainer/>
