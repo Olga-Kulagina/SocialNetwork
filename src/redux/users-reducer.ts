@@ -20,13 +20,18 @@ export type UserType = {
     photos: photosType
 }
 
+export type FilterType = typeof initialState.filter
+
 let initialState = {
     users: [] as Array<UserType>,
     pageSize: 12,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: [] as Array<number>
+    followingInProgress: [] as Array<number>,
+    filter: {
+        term: ''
+    }
 }
 
 export type UsersStateType = typeof initialState
@@ -38,6 +43,7 @@ type ActionsTypes = ReturnType<typeof followSuccess>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof setFilter>
 
 const usersReducer = (state = initialState, action: ActionsTypes): UsersStateType => {
     switch (action.type) {
@@ -63,6 +69,8 @@ const usersReducer = (state = initialState, action: ActionsTypes): UsersStateTyp
             }
         case 'USERS/SET-USERS':
             return {...state, users: action.users}
+        case 'USERS/SET-FILTER':
+            return {...state, filter: action.payload}
         case 'USERS/SET-CURRENT-PAGE':
             return {...state, currentPage: action.currentPage}
         case 'USERS/SET-TOTAL-USERS-COUNT':
@@ -101,6 +109,12 @@ export const setUsers = (users: Array<UserType>) => {
         users: users
     } as const
 }
+export const setFilter = (term: string) => {
+    return {
+        type: 'USERS/SET-FILTER',
+        payload: {term}
+    } as const
+}
 export const setCurrentPage = (currentPage: number) => {
     return {
         type: 'USERS/SET-CURRENT-PAGE',
@@ -128,11 +142,12 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 }
 
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number, term: string) => {
     return (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFetching(true))
         dispatch(setCurrentPage(currentPage))
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setFilter(term))
+        usersAPI.getUsers(currentPage, pageSize, term).then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))

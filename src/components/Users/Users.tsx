@@ -1,8 +1,9 @@
 import React from 'react';
-import {UserType} from '../../redux/users-reducer';
+import {FilterType, UserType} from '../../redux/users-reducer';
 import {Paginator} from '../common/Paginator/Paginator';
 import {User} from './User';
 import s from './Users.module.css'
+import {UsersSearchForm} from './UsersSearchForm/UsersSearchForm';
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -14,6 +15,7 @@ type UsersPropsType = {
     unfollow: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
     onPageChanged: (pageNumber: number) => void
+    onFilterChanged: (filter: FilterType) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
@@ -21,6 +23,9 @@ const Users: React.FC<UsersPropsType> = (props) => {
 
     return (
         <div>
+            <div>
+                <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
+            </div>
             <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
                        currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                        portionSize={10}/>
