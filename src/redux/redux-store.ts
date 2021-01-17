@@ -27,6 +27,7 @@ export type PostType = {
     id: number
     message: string
     likesCount: number
+    publishedTime: string
 }
 export type DialogType = {
     id: number

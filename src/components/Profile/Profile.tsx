@@ -5,9 +5,10 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import profileBckPicture from '../../assets/images/profile_bck_picture.jpg'
 import userPhoto from '../../assets/images/avatar.png';
 import {Preloader} from '../common/Preloader/Preloader';
+import {ProfileType} from '../../redux/profile-reducer';
 
 type ProfilePropsType = {
-    profile: any
+    profile: ProfileType
     status: string
     updateStatus: (newStatus: string) => void
     isOwner: boolean

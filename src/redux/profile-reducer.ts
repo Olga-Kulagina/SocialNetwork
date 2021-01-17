@@ -28,12 +28,13 @@ export type ProfileType = {
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi! How are yoy?', likesCount: 28},
-        {id: 2, message: 'How is your dissertation?', likesCount: 0},
-        {id: 3, message: 'Yo Yo Yo', likesCount: 15},
-        {id: 4, message: 'Blablabla', likesCount: 5},
+        {id: 1, message: 'Hi! How are yoy?', likesCount: 28, publishedTime: '5 minutes ago'},
+        {id: 2, message: 'How is your dissertation?', likesCount: 0, publishedTime: '1 hour ago'},
+        {id: 3, message: 'Yo Yo Yo', likesCount: 15, publishedTime: '8 hours ago'},
+        {id: 4, message: 'Blablabla', likesCount: 5, publishedTime: '15 hours ago'},
     ] as Array<PostType>,
-    profile: null as ProfileType | null,
+    // @ts-ignore
+    profile: null as ProfileType,
     status: ''
 }
 
@@ -45,7 +46,8 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
             let newPost = {
                 id: 5,
                 message: action.postMessage,
-                likesCount: 0
+                likesCount: 0,
+                publishedTime: '1 minute ago'
             };
             return {...state, posts: [...state.posts, newPost]};
         }

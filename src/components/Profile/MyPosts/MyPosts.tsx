@@ -5,17 +5,20 @@ import {PostType} from '../../../redux/redux-store';
 import {Field, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControls';
+import {ProfileType} from '../../../redux/profile-reducer';
+import userPhoto from '../../../assets/images/avatar.png';
 
 type MyPostsPropsType = {
     addPost: (text: string) => void
     posts: Array<PostType>
-    profile: any
+    profile: ProfileType
 }
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
 
 
-    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}
+                                                   profile={props.profile} publishedTime={p.publishedTime}/>)
 
 
     let addPost = (values: any) => {
@@ -25,7 +28,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
     return (
         <div>
             <div className={s.addPostForm}>
-                <img src={props.profile.photos.large} alt='author'/>
+                <img src={props.profile.photos.large || userPhoto} alt='author'/>
                 <AddNewPostFormRedux onSubmit={addPost} />
             </div>
             <div className={s.posts}>

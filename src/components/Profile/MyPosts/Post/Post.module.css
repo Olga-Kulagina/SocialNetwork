@@ -1,12 +1,53 @@
-.item {
-    color: yellow;
-    background-color: rgba(34, 128, 204, 1);
-    padding: 3px;
-    margin: 5px 10px;
+.post {
+    color: #888da8;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 10px;
 }
 
-.item img {
-    height: 50px;
-    width: 50px;
+.authorPhoto {
+    height: 40px;
+    width: 40px;
     border-radius: 50px;
+    margin-right: 12px;
+}
+
+.author {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 0;
+}
+
+.authorInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.authorName {
+    font-weight: 700;
+    color: #515365;
+    font-size: .875rem;
+    transition: all .15s ease;
+    font-family: Roboto
+}
+
+.publishedTime {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .812rem;
+    font-weight: 400;
+    color: #888da8;
+}
+
+
+
+
+
+
+.likesComments img {
+    height: 20px;
 }
