@@ -1,9 +1,8 @@
 .users {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
-
-
 
 .userCard {
     position: relative;
@@ -12,7 +11,7 @@
     text-align: center;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 5px;
-    margin: 5px;
+    margin: 10px;
 }
 
 .userBackground {

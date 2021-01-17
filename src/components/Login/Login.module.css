@@ -1,0 +1,121 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    width: 360px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.loginText {
+    padding: 25px;
+    border-bottom: 1px solid #e6ecf5;
+    margin-bottom: 0;
+    color: #515365;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1.3;
+    box-sizing: border-box;
+    font-family: Roboto,Arial,sans-serif;
+    text-align: center;
+}
+
+.loginForm {
+    padding: 35px 25px;
+    box-sizing: border-box;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: .812rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #888da8;
+    text-align: left;
+}
+
+.inputFormControl {
+    padding: 1rem 1.1rem 1rem;
+    line-height: 1.75;
+    color: #515365;
+    font-size: .875rem;
+
+    display: block;
+    width: 100%;
+    height: auto;
+    font-weight: 400;
+    background-clip: padding-box;
+    border: 1px solid #e6ecf5;
+    border-radius: .25rem;
+
+    margin: 15px 0;
+
+    box-sizing: border-box;
+}
+
+.inputFormControl:focus {
+    color: #495057;
+    background-color: transparent;
+    border-color: #ffc6ba;
+    outline: 0;
+    box-shadow: none;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.rememberMe {
+    cursor: pointer;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #888da8;
+    margin-left: 10px;
+}
+
+.loginBtn {
+    cursor: pointer;
+    width: 100%;
+
+    color: #fff;
+    margin-top: 15px;
+    position: relative;
+
+    padding: 1rem 6rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+
+    background-color: #ff5e3a;
+
+    display: inline-block;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+
+    transition: all .15s ease-in-out;
+
+    box-sizing: border-box;
+}
+
+.loginBtn:hover {
+    background-color: #ff763a;
+    border-color: #ff763a;
+    opacity: 1;
+}
+
+.loginBtn:active {
+    background-color: #ff3407;
+    border-color: #f92e00;
+}
+
+.error {
+    padding-top: 10px;
+    text-align: center;
+    color: red;
+}
