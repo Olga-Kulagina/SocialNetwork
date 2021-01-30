@@ -1,16 +1,55 @@
 .header {
     grid-area: h;
-    background-color: rgba(34, 128, 204, 1);
+    background-color: #2c2c73;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 5px;
 }
 
-.header img {
-    height: 60px;
+.logoBlock {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.logoBlock img {
+    margin-top: 5px;
+    height: 80px;
 }
 
 .loginBlock {
     float: right;
+    color: #fff;
+
+}
+.logoutBtn {
+    height: 30px;
+    width: 70px;
+    margin: 5px 20px 5px 15px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    font-family: Roboto,Arial,sans-serif;
+    border: 1px solid #ff5e3a;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #ff5e3a;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
 }
 
-.loginBlock a {
-    color: white;
+.logoutBtn:hover {
+    background-color: #ff763a;
+    border-color: #ff763a;
+    opacity: 1;
+}
+
+.logoutBtn:active {
+    background-color: #ff3407;
+    border-color: #f92e00;
 }

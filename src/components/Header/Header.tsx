@@ -11,10 +11,20 @@ export type HeaderPropsType = {
 function Header(props: HeaderPropsType) {
     return (
         <header className={s.header}>
-            <img src='https://svg-clipart.com/svg/yellow/8aCkhdK-lemon-slice-vector.svg' alt={'social network logo'}/>
+            <div className={s.logoBlock}>
+                <div>
+                    <img src='https://svg-clipart.com/svg/yellow/8aCkhdK-lemon-slice-vector.svg'
+                         alt={'social network logo'}/>
+                </div>
+                <div>Social Network</div>
+            </div>
             <div className={s.loginBlock}>
-                {props.isAuth ? <div>{props.login} - <button onClick={props.logout}>Log Out</button></div> : <NavLink to={'/login'}>Login</NavLink> }
-
+                {props.isAuth ? <div>{props.login}
+                        <button className={s.logoutBtn} onClick={props.logout}>Log Out</button>
+                    </div> :
+                    <NavLink to={'/login'}>
+                        <button className={s.logoutBtn}>Log In</button>
+                    </NavLink>}
             </div>
         </header>
     )
