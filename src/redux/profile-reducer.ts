@@ -1,4 +1,4 @@
-import {ActionsTypes, PostType} from './redux-store';
+import {PostType} from './redux-store';
 import {profileAPI} from '../api/api';
 
 export type ContactsType = {
@@ -24,7 +24,16 @@ export type ProfileType = {
     contacts: ContactsType
     photos: PhotosType
     aboutMe: string
+    status?: string
 }
+
+
+export type ActionsTypes =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setStatus>
+    | ReturnType<typeof savePhotoSuccess>
+    | ReturnType<typeof addLike>;
 
 let initialState = {
     posts: [
@@ -49,7 +58,7 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
                 likesCount: 0,
                 publishedTime: '1 minute ago'
             };
-            return {...state, posts: [...state.posts, newPost]};
+            return {...state, posts: [newPost, ...state.posts]};
         }
         case 'P/SET_USER_PROFILE': {
             return {...state, profile: action.profile}
@@ -63,9 +72,21 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
         case 'P/SAVE_PHOTO_SUCCESS': {
             return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
         }
+        case 'P/ADD_LIKE': {
+            let stateCopy = {...state, posts: [...state.posts]}
+            stateCopy.posts = stateCopy.posts.map(p => p.id === action.postId ? {...p, likesCount: p.likesCount + 1} : p)
+            return stateCopy
+        }
         default:
             return state;
     }
+}
+
+export const addLike = (postId: number) => {
+    return {
+        type: 'P/ADD_LIKE',
+        postId
+    } as const
 }
 
 export const addPostActionCreator = (postMessage: string) => {
@@ -86,7 +107,7 @@ export const setStatus = (status: string) => {
         status
     } as const
 }
-export const savePhotoSuccess = (photos: { small: string | null, large: string | null}) => {
+export const savePhotoSuccess = (photos: { small: string | null, large: string | null }) => {
     return {
         type: 'P/SAVE_PHOTO_SUCCESS',
         photos
@@ -104,7 +125,7 @@ export const getStatusThunkCreator = (userId: number) => (dispatch: any) => {
 }
 export const updateStatusThunkCreator = (status: string) => (dispatch: any) => {
     return profileAPI.updateStatus(status).then(response => {
-        if(response.data.resultCode === 0) {
+        if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
         }
     })
@@ -112,7 +133,7 @@ export const updateStatusThunkCreator = (status: string) => (dispatch: any) => {
 
 export const savePhotoThunkCreator = (file: File) => (dispatch: any) => {
     return profileAPI.savePhoto(file).then(response => {
-        if(response.data.resultCode === 0) {
+        if (response.data.resultCode === 0) {
             dispatch(savePhotoSuccess(response.data.data.photos))
         }
     })

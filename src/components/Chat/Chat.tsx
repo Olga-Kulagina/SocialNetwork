@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Message, ChatMessageType} from './Message';
 import s from './Message.module.css'
 
-type ChatPropsType = {
+export type ChatPropsType = {
     wsChannel: WebSocket
 }
 

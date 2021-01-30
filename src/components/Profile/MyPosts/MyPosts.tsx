@@ -18,7 +18,8 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
 
 
     let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}
-                                                   profile={props.profile} publishedTime={p.publishedTime}/>)
+                                                   profile={props.profile} publishedTime={p.publishedTime}
+                                                   postId={p.id}/>)
 
 
     let addPost = (values: any) => {
@@ -29,7 +30,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
         <div>
             <div className={s.addPostForm}>
                 <img src={props.profile.photos.large || userPhoto} alt='author'/>
-                <AddNewPostFormRedux onSubmit={addPost} />
+                <AddNewPostFormRedux onSubmit={addPost}/>
             </div>
             <div className={s.posts}>
                 {postsElements}
@@ -46,11 +47,11 @@ type AddNewPostFormPropsType = {
 
 const AddNewPostForm = (props: AddNewPostFormPropsType) => {
     return (
-            <form onSubmit={props.handleSubmit} className={s.form}>
-                    <Field className={s.textarea} component={Textarea} name='newPostText' validate={[required, maxLength10]}
-                           placeholder='Post message'/>
-                    <button className={s.addPostBtn}>Add post</button>
-            </form>
+        <form onSubmit={props.handleSubmit} className={s.form}>
+            <Field className={s.textarea} component={Textarea} name='newPostText' validate={[required, maxLength10]}
+                   placeholder='Post message'/>
+            <button className={s.addPostBtn}>Add post</button>
+        </form>
     )
 }
 const AddNewPostFormRedux = reduxForm({form: 'ProfileAddNewPostForm'})(AddNewPostForm)

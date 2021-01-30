@@ -6,6 +6,7 @@ import profileBckPicture from '../../assets/images/profile_bck_picture.jpg'
 import userPhoto from '../../assets/images/avatar.png';
 import {Preloader} from '../common/Preloader/Preloader';
 import {ProfileType} from '../../redux/profile-reducer';
+import {ProfileStatusWithHooks} from './ProfileInfo/ProfileStatusWithHooks';
 
 type ProfilePropsType = {
     profile: ProfileType
@@ -32,11 +33,12 @@ const Profile = (props: ProfilePropsType) => {
                 </div>
                 <div className={s.profileUser}>
                     <img src={props.profile.photos.large || userPhoto} alt={'user avatar'}/>
-                    <p>{props.profile.fullName}</p>
+                    <p className={s.userName}>{props.profile.fullName}</p>
+                    <p className={s.userStatus}><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></p>
                 </div>
             </div>
-            {<ProfileInfo profile={props.profile} status={props.status} savePhoto={props.savePhoto}
-                         isOwner={props.isOwner} updateStatus={props.updateStatus}/>}
+            {/*{<ProfileInfo profile={props.profile} status={props.status} savePhoto={props.savePhoto}*/}
+            {/*             isOwner={props.isOwner} updateStatus={props.updateStatus}/>}*/}
             <MyPostsContainer/>
         </div>
     )

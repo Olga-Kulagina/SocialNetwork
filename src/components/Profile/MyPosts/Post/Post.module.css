@@ -33,7 +33,7 @@ p {
     color: #515365;
     font-size: .875rem;
     transition: all .15s ease;
-    font-family: Roboto
+    font-family: Roboto, Arial, sans-serif;
 }
 
 .publishedTime {
@@ -43,11 +43,36 @@ p {
     color: #888da8;
 }
 
+.postText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
+.likesComments {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
 
+.likesComments span {
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 5px;
+}
 
 
 .likesComments img {
     height: 20px;
+    margin: 0px 5px;
+}
+
+.likeBtn {
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
 }
