@@ -1,0 +1,42 @@
+.searchForm {
+    display: flex;
+}
+
+.searchInput {
+    box-sizing: border-box;
+    margin: 5px 20px 5px 10px;
+    padding: 0 15px;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #e6ecf5;
+    border-radius: 5px;
+    color: #515365;
+    font-family: Roboto,Arial,sans-serif;
+}
+
+.findBtn {
+    height: 40px;
+    width: 100px;
+    padding: .6rem .5rem;
+    margin: 5px 20px 5px 0;
+    font-weight: 700;
+    font-size: 0.75rem;
+    font-family: Roboto,Arial,sans-serif;
+    border: 1px solid #ff5e3a;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #ff5e3a;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
+}
+
+.findBtn:hover {
+    background-color: #ff763a;
+    border-color: #ff763a;
+    opacity: 1;
+}
+
+.findBtn:active {
+    background-color: #ff3407;
+    border-color: #f92e00;
+}

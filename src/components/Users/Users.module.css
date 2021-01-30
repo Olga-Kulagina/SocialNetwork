@@ -1,7 +1,8 @@
 .users {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 .userCard {
@@ -80,7 +81,7 @@
     margin: 15px 0;
 
 
-    font-family: Roboto;
+    font-family: Roboto,Arial,sans-serif;
 }
 
 .followBtn:hover {

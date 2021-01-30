@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import {FilterType} from '../../../redux/users-reducer';
+import s from './UsersSearchForm.module.css'
 
 type UsersSearchFormType = {
     onFilterChanged: (filter: FilterType) => void
@@ -22,15 +23,17 @@ export const UsersSearchForm = (props: UsersSearchFormType) => {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}
+              className={s.searchForm}>
             <input
+                className={s.searchInput}
                 id="term"
                 name="term"
                 type="text"
                 onChange={formik.handleChange}
                 value={formik.values.term}
             />
-            <button type="submit">Find</button>
+            <button className={s.findBtn} type="submit">Find</button>
         </form>
     );
 
