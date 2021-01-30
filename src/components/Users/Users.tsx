@@ -26,9 +26,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
             <div>
                 <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
             </div>
-            <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
-                       currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                       portionSize={10}/>
+
             <div className={s.users}>
                 {
                     props.users.map(u => <User key={u.id} user={u}
@@ -36,6 +34,9 @@ const Users: React.FC<UsersPropsType> = (props) => {
                                                follow={props.follow} unfollow={props.unfollow}/>)
                 }
             </div>
+            <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
+                       currentPage={props.currentPage} onPageChanged={props.onPageChanged}
+                       portionSize={10}/>
         </div>)
 }
 

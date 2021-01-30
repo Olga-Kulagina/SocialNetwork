@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
@@ -27,29 +27,29 @@ class App extends React.Component<StorePropsType> {
     }
 
     render() {
-        if(!this.props.initialized) {
-            return <Preloader />
+        if (!this.props.initialized) {
+            return <Preloader/>
         }
 
-            return (
+        return (
 
-                <div className='app-wrapper'>
-                    <HeaderContainer/>
-                    <Navbar/>
-                    <div className='app-wrapper-content'>
-                        <Suspense fallback={<Preloader />}>
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                        <Suspense fallback={<Preloader/>}>
                             <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                         </Suspense>
-                        <Suspense fallback={<Preloader />}>
+                        <Suspense fallback={<Preloader/>}>
                             <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                         </Suspense>
                         <Route path='/users' render={() => <UsersContainer/>}/>
                         <Route path='/login' render={() => <Login/>}/>
                         <Route path='/chat' render={() => <ChatPage/>}/>
-                    </div>
                 </div>
+            </div>
 
-            );
+        );
     }
 }
 

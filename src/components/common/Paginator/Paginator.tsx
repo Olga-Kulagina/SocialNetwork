@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import s from './Paginator.module.css';
 
-type PaginatorPropstype = {
+type PaginatorPropsType = {
     totalItemsCount: number
     pageSize: number
     currentPage: number
@@ -9,7 +9,7 @@ type PaginatorPropstype = {
     portionSize: number
 }
 
-export const Paginator: React.FC<PaginatorPropstype> = (props) => {
+export const Paginator: React.FC<PaginatorPropsType> = (props) => {
 
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
 
@@ -24,23 +24,25 @@ export const Paginator: React.FC<PaginatorPropstype> = (props) => {
     let rightPortionPageNumber = portionNumber * props.portionSize
 
     return (
-        <div>
-            {
-                portionCount > 1 &&
-                    <button onClick={() => {setPortionNumber(portionNumber - 1)}}>PREV</button>
-            }
+        <div className={s.center}>
+            <button className={s.navBtn} onClick={() => {
+                setPortionNumber(portionNumber - 1)
+            }}
+                    disabled={portionNumber === 1}>Prev
+            </button>
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map((p, index) =>
-                <span key={index} className={`${p === props.currentPage ? s.selectedPage : ''} ${s.page}`}
-                      onClick={() => {
-                          props.onPageChanged(p)
-                      }}>{p}</span>
-            )}
-            {
-                portionCount > portionNumber &&
-                <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>
-            }
+                    <button key={index} className={`${s.pageBtn} ${p === props.currentPage ? s.selectedPage : ''}`}
+                          disabled={p === props.currentPage} onClick={() => {
+                              props.onPageChanged(p)
+                          }}>{p}</button>
+                )}
+            <button className={s.navBtn} onClick={() => {
+                setPortionNumber(portionNumber + 1)
+            }}
+                    disabled={portionNumber === portionCount}>Next
+            </button>
         </div>
     )
 }

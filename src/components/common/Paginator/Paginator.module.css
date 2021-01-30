@@ -1,7 +1,64 @@
-.selectedPage {
-    font-weight: bold;
+.center {
+    text-align: center;
 }
 
-.page {
-    padding: 0 3px;
+.navBtn {
+    margin: 0 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+
+    border-radius: 5px;
+
+    padding: .9rem 1.2rem;
+    line-height: 1.25;
+    color: #515365;
+    background-color: #fff;
+    border: 1px solid #e6ecf5;
+
+    transition: all .15s ease;
+}
+
+.navBtn:hover {
+    color: #fff;
+    background-color: #ff5e3a;
+    border-color: #dee2e6;
+    cursor: pointer;
+}
+
+.navBtn:disabled {
+    color: #515365;
+    background-color: #fff;
+    cursor: auto;
+}
+
+.pageBtn {
+    margin: 0 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+
+    border-radius: 5px;
+
+    padding: .9rem 1.2rem;
+    line-height: 1.25;
+    color: #515365;
+    background-color: #fff;
+    border: 1px solid #e6ecf5;
+
+    transition: all .15s ease;
+}
+
+.pageBtn:hover {
+    color: #fff;
+    background-color: #ff5e3a;
+    border-color: #dee2e6;
+    cursor: pointer;
+}
+
+.pageBtn:disabled {
+    cursor: auto;
+}
+
+.selectedPage {
+    background-color: #ff5e3a;
+    color: #fff;
 }
