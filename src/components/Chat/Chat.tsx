@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Message, ChatMessageType} from './Message';
-import {useFormik} from 'formik';
+import s from './Message.module.css'
 
 type ChatPropsType = {
     wsChannel: WebSocket
@@ -46,13 +46,12 @@ export const AddMessageForm = (props: { wsChannel: WebSocket }) => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={s.addMessageForm}>
+            <div className={s.form}>
                 <textarea onChange={(e) => setMessage(e.currentTarget.value)}
-                value={message}></textarea>
-            </div>
-            <div>
-                <button onClick={sendMessage}>Send</button>
+                value={message}
+                className={s.textarea}></textarea>
+                <button className={s.addMessageBtn} onClick={sendMessage}>Send</button>
             </div>
         </div>
     );

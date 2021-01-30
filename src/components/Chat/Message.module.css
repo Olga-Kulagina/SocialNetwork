@@ -1,0 +1,89 @@
+.message {
+    display: flex;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 5px;
+
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.nameAndText {
+    padding-left: 15px;
+}
+
+.userName {
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 14px;
+    color: #515365;
+    text-decoration: none;
+    transition: all .15s ease;
+}
+.userName:hover {
+    color: #ff5e3a;
+}
+
+.messageText {
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #888da8;
+}
+
+.addMessageForm {
+    display: flex;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+}
+
+.form {
+    width: 100%;
+    padding: 20px 36px 10px 36px;
+}
+
+.textarea {
+    min-height: 60px;
+    width: 100%;
+    transition: all .3s ease;
+    border-radius: 0.3rem;
+}
+
+.textarea:focus {
+    color: #495057;
+    border-color: #ffc6ba;
+    outline: 0;
+    box-shadow: none;
+}
+
+.addMessageBtn {
+    cursor: pointer;
+    padding: .8rem 2.1rem;
+    font-size: 0.688rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #ff5e3a;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid #ff5e3a;
+    transition: all .15s ease-in-out;
+    margin: 5px 0;
+
+
+    font-family: Roboto,Arial,sans-serif;
+    float: right;
+}
+
+.addMessageBtn:hover {
+    background-color: #ff763a;
+    border-color: #ff763a;
+    opacity: 1;
+    color: #fff;
+}
