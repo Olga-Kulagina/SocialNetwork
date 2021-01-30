@@ -4,7 +4,6 @@ import profileReducer, {
     setStatus,
     setUserProfile
 } from './profile-reducer';
-import dialogsReducer, {sendMessageActionCreator} from './dialogs-reducer';
 import usersReducer from './users-reducer';
 import {authReducer} from './auth-reducer';
 import thunkMiddleware from 'redux-thunk';
@@ -13,7 +12,6 @@ import {appReducer} from './app-reducer';
 
 let reducers = combineReducers({
     profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
@@ -42,15 +40,9 @@ export type ProfilePageType = {
     posts: Array<PostType>
     profile: object | null
 }
-export type DialogsPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageBody: string
-}
 
 export type RootStateType = {
     profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
 }
 
 export type StoreType = {
@@ -63,7 +55,6 @@ export type StoreType = {
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof sendMessageActionCreator>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof savePhotoSuccess>;

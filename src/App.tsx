@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
@@ -12,8 +12,6 @@ import {Preloader} from './components/common/Preloader/Preloader';
 import {ChatPage} from './components/Chat/ChatPage';
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-
 
 export type StorePropsType = {
     initializeApp: () => void
@@ -37,9 +35,6 @@ class App extends React.Component<StorePropsType> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                        <Suspense fallback={<Preloader/>}>
-                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        </Suspense>
                         <Suspense fallback={<Preloader/>}>
                             <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                         </Suspense>
