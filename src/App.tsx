@@ -40,6 +40,7 @@ class App extends React.Component<StorePropsType> {
                         </Suspense>
                         <Route path='/users' render={() => <UsersContainer/>}/>
                         <Route path='/login' render={() => <Login/>}/>
+                        <Route exact path='/' render={() => <Login/>}/>
                         <Route path='/chat' render={() => <ChatPage/>}/>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import React from 'react'
 import s from './Profile.module.css'
-import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import profileBckPicture from '../../assets/images/profile_bck_picture.jpg'
 import userPhoto from '../../assets/images/avatar.png';

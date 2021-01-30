@@ -3,6 +3,53 @@
     justify-content: center;
 }
 
+.welcome {
+    width: 360px;
+    padding: 20px 0px 35px 25px;
+    margin-right: 20px;
+}
+
+.welcomeText {
+    width: 300px;
+    box-sizing: border-box;
+    font-weight: 300;
+    font-size: 2.5rem;
+    font-family: Roboto,Arial,sans-serif;
+    text-align: left;
+}
+
+.testAccountDescription {
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: .875rem;
+    font-weight: 400;
+    font-family: Roboto,Arial,sans-serif;
+    text-align: left;
+    line-height: 2;
+}
+
+
+.registerBtn {
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    background-color: #ff5e3a;
+    font-weight: 700;
+    border: 1px solid transparent;
+    transition: all .15s ease-in-out;
+    box-sizing: border-box;
+}
+
+.registerBtn a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .login {
     width: 360px;
     border-radius: 5px;
@@ -103,13 +150,13 @@
     box-sizing: border-box;
 }
 
-.loginBtn:hover {
+.loginBtn:hover, .registerBtn:hover {
     background-color: #ff763a;
     border-color: #ff763a;
     opacity: 1;
 }
 
-.loginBtn:active {
+.loginBtn:active, .registerBtn:active {
     background-color: #ff3407;
     border-color: #f92e00;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Message.module.css'
 import {NavLink} from 'react-router-dom';
+import userPhoto from '../../assets/images/avatar.png';
 
 export type ChatMessageType = {
     message: string
@@ -13,7 +14,7 @@ export const Message = (props: ChatMessageType) => {
     return (
         <div className={s.message}>
             <div>
-                <img className={s.avatar} src={props.photo} alt='avatar'/>
+                <img className={s.avatar} src={props.photo || userPhoto} alt='avatar'/>
             </div>
             <div className={s.nameAndText}>
                 <div>

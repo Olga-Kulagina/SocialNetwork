@@ -24,15 +24,28 @@ const Login: React.FC<LoginPropsType> = (props) => {
     }
 
     return (
-        <div className={s.loginContainer}>
-            <div className={s.login}>
-                <div className={s.loginText}>Login to your Account</div>
-                <LoginReduxForm onSubmit={onSubmit}/>
+            <div className={s.loginContainer}>
+                <div className={s.welcome}>
+                    <div className={s.welcomeText}>
+                        Welcome to Social Network
+                    </div>
+                    <div className={s.testAccountDescription}>
+                        To log in get registered <br/>
+                        or use common test account credentials: <br/>
+                        Email: free@samuraijs.com <br/>
+                        Password: free
+                    </div>
+                    <button className={s.registerBtn}><a href={'https://social-network.samuraijs.com/'}
+                                                         target={'_blank'}>Register Now!
+                    </a></button>
+                </div>
+                <div className={s.login}>
+                    <div className={s.loginText}>Login to your Account</div>
+                    <LoginReduxForm onSubmit={onSubmit}/>
+                </div>
             </div>
-        </div>
     )
 }
-
 
 type LoginFormValuesType = {
     email: string
@@ -66,7 +79,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = (props) => {
                 {props.error}
             </div>}
             <div>
-                <button className={s.loginBtn}>Login</button>
+                <button className={s.loginBtn}>Log In</button>
             </div>
         </form>
     )
